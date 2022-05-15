@@ -22,9 +22,6 @@ module.exports = (app) => {
   app.on('pull_request.opened', opened)
   app.on('pull_request.closed', closed)
 
-
-  const server_url = process.env.MORALIS_SERVER_ID ;
-  const app_id = process.env.MORALIS_APPLICATION_ID;
   let comment ;
   
   async function opened(context) {
@@ -47,7 +44,11 @@ module.exports = (app) => {
 
       var config = {
         method: 'get',
-        url: `${server_url}/functions/githubUpdateCard?_ApplicationId=${app_id}&taskId=${taskId}&link=${prLink}&user=${name}`,
+        url: `${
+          process.env.DEV_ENV === 'local' 
+          ? `https://pbsxrhv9x6qo.usemoralis.com:2053/server/functions/githubUpdateCard?_ApplicationId=cq3uoPVGZeNUgtREjNzcOIxMA132Xsx5IighR4nE&taskId=${taskId}&link=${prLink}&user=${name}` 
+          : `https://msc1tunwvyrc.usemoralis.com:2053/server/functions/githubUpdateCard?_ApplicationId=whJKcYaJTM9Mffe8FXop5wFPqvkBEksRRhlh1jMa&taskId=${taskId}&link=${prLink}&user=${name}` 
+          }`,
         data: data
       };
 
@@ -89,7 +90,11 @@ module.exports = (app) => {
 
       var config = {
         method: 'get',
-        url: `${server_url}/functions/githubUpdateCard?_ApplicationId=${app_id}&taskId=${taskId}&link=${prLink}&user=${name}`,
+        url: `${
+          process.env.DEV_ENV === 'local' 
+          ? `https://pbsxrhv9x6qo.usemoralis.com:2053/server/functions/githubUpdateCard?_ApplicationId=cq3uoPVGZeNUgtREjNzcOIxMA132Xsx5IighR4nE&taskId=${taskId}&link=${prLink}&user=${name}` 
+          : `https://msc1tunwvyrc.usemoralis.com:2053/server/functions/githubUpdateCard?_ApplicationId=whJKcYaJTM9Mffe8FXop5wFPqvkBEksRRhlh1jMa&taskId=${taskId}&link=${prLink}&user=${name}` 
+          }`,
         data: data
       };
 

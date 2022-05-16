@@ -86,7 +86,7 @@ module.exports = (app) => {
       const taskIds = submatch.split(",").map(function (item) {
         return item.trim();
       });
-      console.log({ taskIds });
+      console.log({ taskIds, submatch });
 
       var data = {
         updates: {
